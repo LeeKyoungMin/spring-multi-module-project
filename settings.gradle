@@ -1,1 +1,5 @@
 rootProject.name = 'refund'
+
+include 'refund-common'
+include 'refund-config'
+include 'refund-user'
