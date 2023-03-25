@@ -19,17 +19,18 @@ repositories {
 }
 
 dependencies {
-	implementation project(':refund-config')
 	implementation project(':refund-common')
-	implementation project(':refund-common-repository')
 	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// 실행가능한 jar일 경우에만 true
+tasks.bootJar { enabled = false }
+
+// 일반적인 jar로 빌드할때 true (default)
+tasks.jar { enabled = true }
