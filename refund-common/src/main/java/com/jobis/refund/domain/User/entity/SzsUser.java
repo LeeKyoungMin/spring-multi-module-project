@@ -32,7 +32,7 @@ public class SzsUser {
 
     @Builder
     public SzsUser(String id, String userId, String password, String name, String regNo){
-        this.id = Objects.requireNonNull(id);
+        this.id = id;
         this.userId = Objects.requireNonNull(userId);
         this.password = Objects.requireNonNull(password);
         this.name = Objects.requireNonNull(name);

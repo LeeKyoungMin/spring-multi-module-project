@@ -1,5 +1,7 @@
 package com.jobis.refund.domain.User.dto;
 
+import com.jobis.refund.domain.User.entity.SzsUser;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -23,5 +25,9 @@ public class SzsUserDto {
         this.password = password;
         this.name = name;
         this.regNo = regNo;
+    }
+
+    public SzsUser toEntity(){
+        return new SzsUser(this.id, this.userId, this.password, this.name, this.regNo);
     }
 }
