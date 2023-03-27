@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.jobis.refund.domain.User.dto.TaxAmountDto;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Entity
@@ -28,6 +29,7 @@ public class TaxAmount {
 
     TaxAmount(){}
 
+    @Builder
     public TaxAmount(String id, String calculatedTaxAmount){
         this.id = id;
         this.calculatedTaxAmount = calculatedTaxAmount;

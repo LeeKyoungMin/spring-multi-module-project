@@ -11,6 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.jobis.refund.domain.User.dto.DeductionDto;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Entity
@@ -31,6 +32,7 @@ public class Deduction {
 
     Deduction(){}
 
+    @Builder
     public Deduction(String id, String price, String gubun){
         this.id = id;
         this.price = price;

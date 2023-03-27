@@ -36,7 +36,6 @@ import com.jobis.refund.repository.taxAmount.TaxAmountRepository;
 import com.jobis.refund.repository.user.SzsUserRepository;
 import com.jobis.refund.security.jwt.JwtProvider;
 
-import ch.qos.logback.core.status.Status;
 import lombok.RequiredArgsConstructor;
 
 @Service

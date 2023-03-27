@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.jobis.refund.domain.User.dto.SalaryDto;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Entity
@@ -36,6 +37,24 @@ public class Salary {
     private String regNo;
 
     private String businessNo;
+
+    Salary(){}
+
+    @Builder
+    public Salary(String id, String incomeStatement, String totalPayment, String workStartDate, String company, String name, String paymentDate, String workEndDate, String regNo, String businessNo){
+        this.id = id;
+        this.incomeStatement = incomeStatement;
+        this.totalPayment = totalPayment;
+        this.workStartDate = workStartDate;
+        this.workEndDate = workEndDate;
+        this.company = company;
+        this.name = name;
+        this.paymentDate = paymentDate;
+        this.workEndDate = workEndDate;
+        this.workStartDate = workStartDate;
+        this.regNo = regNo;
+        this.businessNo = businessNo;
+    }
 
     public static SalaryDto toDto(Salary salary) {
         return new SalaryDto(salary.getId(), salary.getIncomeStatement(), salary.getTotalPayment(),
