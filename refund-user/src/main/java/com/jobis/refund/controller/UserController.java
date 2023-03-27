@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jobis.refund.domain.User.dto.RefundDto;
 import com.jobis.refund.domain.User.dto.SzsUserCommand;
 import com.jobis.refund.domain.User.dto.SzsUserDto;
+import com.jobis.refund.domain.User.dto.SzsUserReadCommand;
+import com.jobis.refund.domain.User.dto.SzsUserScrapDto;
 import com.jobis.refund.domain.User.dto.SzsUserTokenDto;
 import com.jobis.refund.service.UserService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
+
 
 @RestController
 @RequestMapping("/szs")
@@ -43,4 +47,17 @@ public class UserController {
         var loginUser = userService.login(szsUserDto);
         return ResponseEntity.ok(loginUser);
     }
+
+    @PostMapping("/scrap")
+    public ResponseEntity<SzsUserScrapDto> getScrap(@Valid @RequestBody SzsUserReadCommand szsUserReadCommand){
+        var scrpDto = userService.getScrap(szsUserReadCommand);
+        return ResponseEntity.ok(scrpDto);
+    }
+
+    @GetMapping(value="/refund")
+    public ResponseEntity<RefundDto> gerRefund(HttpServletRequest request) {
+        var refundDto = userService.getRefund(request);
+        return ResponseEntity.ok(refundDto);
+    }
+    
 }

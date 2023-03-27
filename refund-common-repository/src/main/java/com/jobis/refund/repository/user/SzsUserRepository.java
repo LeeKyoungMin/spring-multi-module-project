@@ -11,4 +11,6 @@ public interface SzsUserRepository extends JpaRepository<SzsUser, String>{
     Optional<SzsUser> findByUserId(String userId);
 
     Optional<SzsUser> findByUserIdAndPassword(String userId, String password);
+
+    Optional<SzsUser> findByRegNo(String regNo);
 }

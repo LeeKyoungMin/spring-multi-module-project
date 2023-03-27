@@ -15,8 +15,13 @@ public enum StatusEnum {
 
     ,USER_LOGIN_FAIL(601, "REFUND-601", "로그인에 실패했습니다.")
 
-    ,USER_NOT_FOUND(602, "REFUND-602", "유저를 찾을수 없습니다.")
+    ,USER_NOT_FOUND(602, "REFUND-602", "유저를 찾을 수 없습니다.")
     
+    ,SALARY_NOT_FOUND(700, "REFUND-700", "급여내역을 찾을 수 없습니다.")
+
+    ,DEDUCTION_NOT_FOUND(701, "REFUND-701", "소득공제 내역을 찾을 수 없습니다.")
+
+    ,TAXAMOUNT_NOT_FOUND(702, "REFUND-702", "산출세액 내역을 찾을 수 없습니다.")
     ;
 
     private int status;

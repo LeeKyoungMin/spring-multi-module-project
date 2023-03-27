@@ -1,10 +1,13 @@
 package com.jobis.refund.domain.User.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -29,6 +32,12 @@ public class SzsUser {
     private String name;
 
     private String regNo;
+
+    @OneToOne(mappedBy = "szsUser")
+    private TaxAmount taxAmount;
+
+    @OneToMany(mappedBy = "szsUser")
+    private List<Deduction> orders;
 
     SzsUser(){}
 
