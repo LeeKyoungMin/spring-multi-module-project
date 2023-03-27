@@ -2,6 +2,8 @@ package com.jobis.refund.service;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,18 +33,16 @@ public class UserService {
 
     private final JwtProvider jwtProvider;
 
-    public SzsUserDto getUsers() {
+    public SzsUserDto getUsers(HttpServletRequest request) {
 
-        for(int i = 0; i < ApiWhiteList.getApiWhList().length; i++){
-            System.out.println("@@@" + ApiWhiteList.getApiWhList()[i]);
-        }
-        
-        // SzsUser user = szsUserRepository.findById("test").orElseThrow();
+        String accessToken = request.getHeader("Authorization");
+        String userId = jwtProvider.getUserInfo(accessToken);
 
-        // SzsUserDto userDto = user.toDto();
+        SzsUser szsUser = szsUserRepository.findByUserId(userId)
+                                            .orElseThrow(() -> new RefundException(StatusEnum.USER_NOT_FOUND, StatusEnum.USER_NOT_FOUND.getDescription()));
 
-        SzsUserDto userDto = new SzsUserDto("test","test","test","test","test");
-        return userDto;
+        SzsUserDto szsUserDto = szsUser.toDto();
+        return szsUserDto;
     }
 
     public SzsUserDto createUser(SzsUserCommand command) {

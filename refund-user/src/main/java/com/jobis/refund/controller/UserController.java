@@ -2,6 +2,9 @@ package com.jobis.refund.controller;
 
 import java.net.URI;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,14 +27,14 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/me")
-    public ResponseEntity<SzsUserDto> getUsers(){
-        var userDto = userService.getUsers();
+    public ResponseEntity<SzsUserDto> getUsers(HttpServletRequest request){
+        var userDto = userService.getUsers(request);
         return ResponseEntity.ok(userDto);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<SzsUserDto> createUser(@RequestBody SzsUserCommand command){
-        var userDto = userService.createUser(command);
+    public ResponseEntity<SzsUserDto> createUser(@Valid @RequestBody SzsUserCommand szsUserCommand){
+        var userDto = userService.createUser(szsUserCommand);
         return ResponseEntity.created(URI.create("/szs/signup")).body(userDto);
     }
 
