@@ -19,10 +19,9 @@ szs:
 
 api:
   infos:
-    - /h2-console
+    - /h2-console/**
     - /szs/signup
     - /szs/login
-    - /szs/me
     - /v3/api-docs/**
     - /swagger-ui/**
     - /v2/api-docs
