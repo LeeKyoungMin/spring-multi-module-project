@@ -2,16 +2,22 @@ package com.jobis.refund.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import com.jobis.refund.config.apilist.ApiWhiteList;
 import com.jobis.refund.config.exception.RefundException;
 import com.jobis.refund.config.exception.StatusEnum;
 import com.jobis.refund.config.userlist.SzsUserList;
 import com.jobis.refund.domain.User.dto.SzsUserCommand;
 import com.jobis.refund.domain.User.dto.SzsUserDto;
+import com.jobis.refund.domain.User.dto.SzsUserTokenDto;
 import com.jobis.refund.domain.User.entity.SzsUser;
 import com.jobis.refund.repository.user.SzsUserRepository;
+import com.jobis.refund.security.jwt.JwtProvider;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,12 +29,19 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
+    private final JwtProvider jwtProvider;
+
     public SzsUserDto getUsers() {
 
-        SzsUser user = szsUserRepository.findById("test").orElseThrow();
+        for(int i = 0; i < ApiWhiteList.getApiWhList().length; i++){
+            System.out.println("@@@" + ApiWhiteList.getApiWhList()[i]);
+        }
+        
+        // SzsUser user = szsUserRepository.findById("test").orElseThrow();
 
-        SzsUserDto userDto = user.toDto();
+        // SzsUserDto userDto = user.toDto();
 
+        SzsUserDto userDto = new SzsUserDto("test","test","test","test","test");
         return userDto;
     }
 
@@ -47,7 +60,7 @@ public class UserService {
                                  .userId(command.getUserId())
                                  .name(command.getName())
                                  .password(passwordEncoder.encode(command.getPassword()))
-                                 .regNo(command.getRegNo())
+                                 .regNo(passwordEncoder.encode(command.getRegNo()))
                                  .build();
 
         SzsUser user = szsUserRepository.save(szsUser);
@@ -55,6 +68,29 @@ public class UserService {
         SzsUserDto szsUserDto = user.toDto();
 
         return szsUserDto;
+    }
+
+    public SzsUserTokenDto login(SzsUserDto szsUserDto) {
+
+        if(!StringUtils.hasText(szsUserDto.getUserId()) || !StringUtils.hasText(szsUserDto.getPassword())){
+            throw new RefundException(StatusEnum.USER_LOGIN_FAIL, StatusEnum.USER_LOGIN_FAIL.getDescription());
+        }
+
+        SzsUser existedUser = szsUserRepository.findByUserIdAndPassword(szsUserDto.getUserId(), szsUserDto.getPassword())
+                                                .orElseThrow(() -> new RefundException(StatusEnum.USER_NOT_FOUND, StatusEnum.USER_NOT_FOUND.getDescription()));
+
+        String accessToken = jwtProvider.createToken(szsUserDto.getUserId());
+        String refreshToken = jwtProvider.createRefreshToken(szsUserDto.getUserId());
+
+        SzsUserDto currentUser = existedUser.toDto();
+
+        SzsUserTokenDto szsUserTokenDto = SzsUserTokenDto.builder()
+                                                         .userId(currentUser.getUserId())
+                                                         .name(currentUser.getName())
+                                                         .accessToken(accessToken)
+                                                         .refreshToken(refreshToken)
+                                                         .build();
+        return szsUserTokenDto;    
     }
     
 }

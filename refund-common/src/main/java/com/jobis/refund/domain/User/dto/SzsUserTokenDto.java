@@ -1,36 +1,34 @@
 package com.jobis.refund.domain.User.dto;
 
-import javax.validation.constraints.NotNull;
-
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SzsUserCommand {
-
-    @NotNull
+public class SzsUserTokenDto {
+    private String id;
+    
     private String userId;
 
-    @NotNull
     private String password;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private String regNo;
 
+    private String accessToken;
+
+    private String refreshToken;
+
     @Builder
-    public SzsUserCommand(String userId, String password, String name, String regNo){
+    public SzsUserTokenDto(String id, String userId, String password, String name, String regNo, String accessToken, String refreshToken){
+        this.id = id;
         this.userId = userId;
         this.password = password;
         this.name = name;
         this.regNo = regNo;
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
     }
-
-    SzsUserCommand(){}
 }
-

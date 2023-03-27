@@ -4,8 +4,10 @@ import com.jobis.refund.domain.User.entity.SzsUser;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class SzsUserDto {
     
     private String id;

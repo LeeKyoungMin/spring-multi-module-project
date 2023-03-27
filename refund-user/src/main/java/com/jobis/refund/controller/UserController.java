@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jobis.refund.domain.User.dto.SzsUserCommand;
 import com.jobis.refund.domain.User.dto.SzsUserDto;
+import com.jobis.refund.domain.User.dto.SzsUserTokenDto;
 import com.jobis.refund.service.UserService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -32,5 +33,11 @@ public class UserController {
     public ResponseEntity<SzsUserDto> createUser(@RequestBody SzsUserCommand command){
         var userDto = userService.createUser(command);
         return ResponseEntity.created(URI.create("/szs/signup")).body(userDto);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<SzsUserTokenDto> login(@RequestBody SzsUserDto szsUserDto){
+        var loginUser = userService.login(szsUserDto);
+        return ResponseEntity.ok(loginUser);
     }
 }

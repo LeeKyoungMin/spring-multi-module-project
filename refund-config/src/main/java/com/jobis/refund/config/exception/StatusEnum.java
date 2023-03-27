@@ -12,6 +12,11 @@ public enum StatusEnum {
     ,INTERNAL_SERVER_ERROR(500, "REFUND-500", "내부 서버 에러 입니다.")
 
     ,USERID_ALREAD_EXIST(600, "REFUND-600", "해당 유저아이디는 존재합니다.")
+
+    ,USER_LOGIN_FAIL(601, "REFUND-601", "로그인에 실패했습니다.")
+
+    ,USER_NOT_FOUND(602, "REFUND-602", "유저를 찾을수 없습니다.")
+    
     ;
 
     private int status;

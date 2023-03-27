@@ -30,6 +30,8 @@ public class SzsUser {
 
     private String regNo;
 
+    SzsUser(){}
+
     @Builder
     public SzsUser(String id, String userId, String password, String name, String regNo){
         this.id = id;
