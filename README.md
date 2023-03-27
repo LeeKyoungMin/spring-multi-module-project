@@ -9,8 +9,8 @@
 2) 구현 방법 : 하기에 기재하였습니다.
 
 3) 검증결과 : 단위 테스트코드 완료 및 Swagger api 테스트 완료
+<img width="642" alt="1" src="https://user-images.githubusercontent.com/22589581/227997257-a318c7e5-fcad-449e-b5bb-f6e64941cfb9.png">
 
-<img width="1599" alt="4" src="https://user-images.githubusercontent.com/22589581/227997240-dff79ed9-baf3-498e-8612-a5a0c292947c.png">
 
 # 환경구성
 
@@ -22,11 +22,11 @@
 
 ---
 
-<img width="561" alt="3" src="https://user-images.githubusercontent.com/22589581/227997252-77df1a94-83a9-444b-9501-33ee45fc58c0.png">
+<img width="210" alt="2" src="https://user-images.githubusercontent.com/22589581/227997256-4acdd80b-c765-493a-9a5a-fb639ba73c4c.png">
 
 ### 멀티모듈 구성도
 
-<img width="210" alt="2" src="https://user-images.githubusercontent.com/22589581/227997256-4acdd80b-c765-493a-9a5a-fb639ba73c4c.png">
+<img width="561" alt="3" src="https://user-images.githubusercontent.com/22589581/227997252-77df1a94-83a9-444b-9501-33ee45fc58c0.png">
 
 - **다음과 같이 멀티모듈로 구성하였습니다.**
 - refund-user : 기능 요구사항 api서버 및 spring security 적용 도메인
@@ -40,7 +40,8 @@
 
 - swagger 주소 : [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
-<img width="642" alt="1" src="https://user-images.githubusercontent.com/22589581/227997257-a318c7e5-fcad-449e-b5bb-f6e64941cfb9.png">
+<img width="1599" alt="4" src="https://user-images.githubusercontent.com/22589581/227997240-dff79ed9-baf3-498e-8612-a5a0c292947c.png">
+
 
 - api 테스트 순서
 
