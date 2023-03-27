@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.10'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.jobis'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	api 'io.springfox:springfox-swagger-ui:3.0.0'
+	api 'io.springfox:springfox-boot-starter:3.0.0'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	api 'org.springframework.boot:spring-boot-starter-security'
+	api 'io.jsonwebtoken:jjwt-api:0.11.5'
+	api 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	api 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	api 'org.apache.commons:commons-lang3:3.12.0'
+	api 'commons-io:commons-io:2.11.0'
+
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// 실행가능한 jar일 경우에만 true
+tasks.bootJar { enabled = false }
+
+// 일반적인 jar로 빌드할때 true (default)
+tasks.jar { enabled = true }
